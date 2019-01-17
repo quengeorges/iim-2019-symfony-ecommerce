@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}home{% endblock title %}
-
+{% block title %}Ecommerce - Homepage{% endblock %}
 {% block body %}
+
 
 <!-- Slide1 -->
 <section class="slide1">
     <div class="wrap-slick1">
         <div class="slick1">
-            {% for collection in collections %}
+            {% for collection in  collections %}
                 {% include 'index/partials/slide.html.twig' %}
             {% endfor %}
+
         </div>
     </div>
 </section>
@@ -28,7 +28,7 @@
         <div class="wrap-slick2">
             <div class="slick2">
 
-                {% for i in range(0, 7) %}
+                {% for product in products %}
                     {% include 'index/partials/product.html.twig' %}
                 {% endfor %}
 
@@ -120,4 +120,4 @@
     </div>
 </section>
 
-{% endblock body %}
+{% endblock %}

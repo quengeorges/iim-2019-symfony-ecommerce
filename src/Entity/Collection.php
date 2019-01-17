@@ -38,7 +38,7 @@ class Collection
     private $dateAdd;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="collectionId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="collection", orphanRemoval=true)
      */
     private $products;
 
@@ -112,7 +112,7 @@ class Collection
     {
         if (!$this->products->contains($product)) {
             $this->products[] = $product;
-            $product->setCollectionId($this);
+            $product->setCollection($this);
         }
 
         return $this;
@@ -123,11 +123,19 @@ class Collection
         if ($this->products->contains($product)) {
             $this->products->removeElement($product);
             // set the owning side to null (unless already changed)
-            if ($product->getCollectionId() === $this) {
-                $product->setCollectionId(null);
+            if ($product->getCollection() === $this) {
+                $product->setCollection(null);
             }
         }
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }

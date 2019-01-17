@@ -22,6 +22,11 @@ class Product
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="float")
      */
     private $price;
@@ -29,10 +34,10 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $SKU;
+    private $sku;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\collection", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Collection", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
     private $collection;
@@ -43,14 +48,14 @@ class Product
     private $pictureUrl;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $slug;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $dateAdd;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $stock;
 
     public function getId(): ?int
     {
@@ -69,6 +74,18 @@ class Product
         return $this;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
     public function getPrice(): ?float
     {
         return $this->price;
@@ -81,24 +98,24 @@ class Product
         return $this;
     }
 
-    public function getSKU(): ?string
+    public function getSku(): ?string
     {
-        return $this->SKU;
+        return $this->sku;
     }
 
-    public function setSKU(string $SKU): self
+    public function setSku(string $sku): self
     {
-        $this->SKU = $SKU;
+        $this->sku = $sku;
 
         return $this;
     }
 
-    public function getCollectionId(): ?collection
+    public function getCollection(): ?Collection
     {
         return $this->collection;
     }
 
-    public function setCollectionId(?collection $collection): self
+    public function setCollection(?Collection $collection): self
     {
         $this->collection = $collection;
 
@@ -117,18 +134,6 @@ class Product
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
     public function getDateAdd(): ?\DateTimeInterface
     {
         return $this->dateAdd;
@@ -137,6 +142,18 @@ class Product
     public function setDateAdd(\DateTimeInterface $dateAdd): self
     {
         $this->dateAdd = $dateAdd;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): self
+    {
+        $this->stock = $stock;
 
         return $this;
     }
