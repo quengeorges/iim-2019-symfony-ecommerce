@@ -14,20 +14,18 @@ class IndexController extends AbstractController
      */
     public function index()
     {
-        $repository = $this->getDoctrine()->getRepository(Collection::class);
+        $repository  = $this->getDoctrine()->getRepository(Collection::class);
         $collections = $repository->findAll();
 
-        $repositoryP = $this->getDoctrine()->getRepository((Product::class));
+        $repositoryP = $this->getDoctrine()->getRepository(Product::class);
         $products = $repositoryP->findBy([], [
             'dateAdd' => 'DESC'
         ], 8);
 
-
-
         return $this->render('index/index.html.twig', [
             'collections' => $collections,
-            'products' => $products
-            ]);
+            'products'    => $products
+        ]);
     }
 
     /**

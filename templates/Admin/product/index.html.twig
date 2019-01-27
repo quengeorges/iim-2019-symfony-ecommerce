@@ -12,10 +12,10 @@
                 <th>Name</th>
                 <th>Slug</th>
                 <th>Price</th>
+                <th>Stock</th>
                 <th>Sku</th>
                 <th>PictureUrl</th>
                 <th>DateAdd</th>
-                <th>Stock</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,10 +26,10 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.slug }}</td>
                 <td>{{ product.price }}</td>
+                <td>{{ product.stock }}</td>
                 <td>{{ product.sku }}</td>
                 <td>{{ product.pictureUrl }}</td>
                 <td>{{ product.dateAdd ? product.dateAdd|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ product.stock }}</td>
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>

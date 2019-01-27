@@ -92,6 +92,9 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "facebook/webdriver": {
+        "version": "1.6.0"
+    },
     "fig/link-util": {
         "version": "1.0.0"
     },
@@ -109,9 +112,6 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
-    },
-    "paragonie/sodium_compat": {
-        "version": "v1.8.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -274,6 +274,9 @@
     },
     "symfony/orm-pack": {
         "version": "v1.0.5"
+    },
+    "symfony/panther": {
+        "version": "v0.2.0"
     },
     "symfony/phpunit-bridge": {
         "version": "4.1",

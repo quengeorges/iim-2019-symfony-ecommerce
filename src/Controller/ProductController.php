@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Collection;
 use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -10,22 +11,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/product/slug", name="product", methods={"GET"})
+     * @Route("/product/{slug}", name="product", methods={"GET"})
      */
     public function index($slug)
     {
-        $repositoryP = $this->getDoctrine()->getRepository((Product::class));
-        $product = $repositoryP->findOneBy([
+        $repositoryP = $this->getDoctrine()->getRepository(Product::class);
+        $product     = $repositoryP->findOneBy([
             'slug' => $slug
         ]);
+        $repositoryP = $this->getDoctrine()->getRepository(Collection::class);
+        $collections = $repositoryP->findAll();
 
-        if (!$product instanceof Product)
-        {
-            throw new NotFoundHttpException('PRODUCT NOT FOUND');
+        if (!$product instanceof Product) {
+            throw new NotFoundHttpException('Product not found');
         }
 
         return $this->render('product/index.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'collections' => $collections
         ]);
     }
 }

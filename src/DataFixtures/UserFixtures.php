@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture
 {
+    private $encoder;
 
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
@@ -27,7 +28,7 @@ class UserFixtures extends Fixture
             'ROLE_ADMIN'
         ]);
 
-        $manager->persist(($user));
+        $manager->persist($user);
 
         $user = new User();
         $user->setEmail('user@user.fr');
@@ -39,7 +40,7 @@ class UserFixtures extends Fixture
             'ROLE_USER'
         ]);
 
-        $manager->persist(($user));
+        $manager->persist($user);
 
         $manager->flush();
     }

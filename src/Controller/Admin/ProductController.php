@@ -53,7 +53,7 @@ class ProductController extends AbstractController
      */
     public function show(Product $product): Response
     {
-        return $this->render('product/show.html.twig', [
+        return $this->render('admin/product/show.html.twig', [
             'product' => $product,
         ]);
     }
@@ -69,7 +69,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin/product_index', [
+            return $this->redirectToRoute('product_index', [
                 'id' => $product->getId(),
             ]);
         }
@@ -91,6 +91,6 @@ class ProductController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('admin/product_index');
+        return $this->redirectToRoute('product_index');
     }
 }

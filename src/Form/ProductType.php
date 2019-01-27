@@ -15,10 +15,10 @@ class ProductType extends AbstractType
             ->add('name')
             ->add('slug')
             ->add('price')
+            ->add('stock')
             ->add('sku')
             ->add('pictureUrl')
             ->add('dateAdd')
-            ->add('stock')
             ->add('collection')
         ;
     }

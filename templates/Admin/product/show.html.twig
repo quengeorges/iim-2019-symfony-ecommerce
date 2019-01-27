@@ -24,6 +24,10 @@
                 <td>{{ product.price }}</td>
             </tr>
             <tr>
+                <th>Stock</th>
+                <td>{{ product.stock }}</td>
+            </tr>
+            <tr>
                 <th>Sku</th>
                 <td>{{ product.sku }}</td>
             </tr>
@@ -34,10 +38,6 @@
             <tr>
                 <th>DateAdd</th>
                 <td>{{ product.dateAdd ? product.dateAdd|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Stock</th>
-                <td>{{ product.stock }}</td>
             </tr>
         </tbody>
     </table>
