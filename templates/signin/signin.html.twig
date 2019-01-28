@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Signin{% endblock %}
+
+{% block body %}
+
+    <form method="post">
+        {{ form_start(signinForm) }}
+        <section class="bgwhite p-t-66 p-b-60">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 p-b-30">
+                        <form class="leave-comment">
+                            <h4 class="m-text26 p-b-36 p-t-15">
+                                Sign in
+                            </h4>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(signinForm.email,
+                                    { 'label': false,
+                                        'attr': {
+                                            'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                            'placeholder': 'Email'
+                                        }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(signinForm.password,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Password'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}"
+                            >
+
+                            <div class="w-size25">
+                                <!-- Button -->
+                                {{ form_widget(signinForm.save, {'attr': {'class': 'flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4'}}) }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{ form_end(signinForm) }}
+    </form>
+{% endblock %}

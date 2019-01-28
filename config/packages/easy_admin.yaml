@@ -1,0 +1,9 @@
+easy_admin:
+    entities:
+        # List the entity class name you want to manage
+        Product:
+            class: App\Entity\Product
+        Collection:
+            class: App\Entity\Collection
+        User:
+            class: App\Entity\User

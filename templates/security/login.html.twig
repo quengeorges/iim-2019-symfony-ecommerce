@@ -8,29 +8,38 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <section class="bgwhite p-t-66 p-b-60">
+        <div class="container">
+            <div class="row">
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+                <div class="col-md-6 p-b-30">
+                    <form class="leave-comment">
+                        <h4 class="m-text26 p-b-36 p-t-15">
+                            Log in
+                        </h4>
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input  id="inputEmail"  value="{{ last_username }}" class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="Email" required autofocus>
+                        </div>
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+                        <div class="bo4 of-hidden size15 m-b-20">
+                            <input type="password" name="password" id="inputPassword" placeholder="Password" required class="sizefull s-text7 p-l-22 p-r-22">
+                        </div>
+
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+
+                        <div class="w-size25">
+                            <!-- Button -->
+                            <button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit">
+                                Sign in
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+    </section>
 </form>
 {% endblock %}

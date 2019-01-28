@@ -123,9 +123,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Cart[]
+     * @return Cart[]|Collection|ArrayCollection
      */
-    public function getCarts(): Collection
+    public function getCarts()
     {
         return $this->carts;
     }
@@ -151,5 +151,13 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getId();
     }
 }

@@ -19,11 +19,11 @@
 
                         <li>
                             <a href="#">Collections</a>
-                            <ul class="sub_menu">
-                                {% for collection in collections %}
-                                    <li><a href="{{ path('collection', {'slug': collection.slug}) }}">{{ collection.name }}</a></li>
-                                {% endfor %}
-                            </ul>
+                            {#<ul class="sub_menu">#}
+                                {#{% for collection in collections %}#}
+                                    {#<li><a href="{{ path('collection', {'slug': collection.slug}) }}">{{ collection.name }}</a></li>#}
+                                {#{% endfor %}#}
+                            {#</ul>#}
                         </li>
 
                         <li>

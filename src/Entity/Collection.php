@@ -101,9 +101,9 @@ class Collection
     }
 
     /**
-     * @return Collection|Product[]
+     * @return Collection|Product[]|ArrayCollection
      */
-    public function getProducts(): Collection
+    public function getProducts()
     {
         return $this->products;
     }
