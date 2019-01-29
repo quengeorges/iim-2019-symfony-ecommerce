@@ -3,7 +3,9 @@
 {% block title %}Signin{% endblock %}
 
 {% block body %}
-
+    {% if form_errors(signinForm) %}
+        <div class="alert alert-danger">{{ form_errors(signinForm) }}</div>
+    {% endif %}
     <form method="post">
         {{ form_start(signinForm) }}
         <section class="bgwhite p-t-66 p-b-60">

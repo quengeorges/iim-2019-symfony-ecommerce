@@ -35,10 +35,15 @@
 
             <!-- Header Icon -->
             <div class="header-icons">
-                <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="{{ asset('images/icons/icon-header-01.png') }}" class="header-icon1" alt="ICON">
-                </a>
-
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="#" class="header-wrapicon1 dis-block">
+                        <a href="{{ path('app_logout') }}" class="block2-name dis-block s-text3 p-b-5">log out</a>
+                    </a>
+                {% else %}
+                    <a href="#" class="header-wrapicon1 dis-block">
+                        <a href="{{ path('app_login') }}" class="block2-name dis-block s-text3 p-b-5">Login</a>
+                    </a>
+                {% endif %}
                 <span class="linedivide1"></span>
 
                 <div class="header-wrapicon2">
