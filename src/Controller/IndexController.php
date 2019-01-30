@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Collection;
 use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
@@ -12,10 +13,12 @@ class IndexController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(SessionInterface $session)
     {
         $repository  = $this->getDoctrine()->getRepository(Collection::class);
         $collections = $repository->findAll();
+        $session->set('collections', $collections);
+
 
         $repositoryP = $this->getDoctrine()->getRepository(Product::class);
         $products = $repositoryP->findBy([], [

@@ -29,6 +29,11 @@ class Cart
      */
     private $cartProducts;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Indent", mappedBy="cart", cascade={"persist", "remove"})
+     */
+    private $indent;
+
     public function __construct()
     {
         $this->cartProducts = new ArrayCollection();
@@ -98,5 +103,22 @@ class Cart
     public function __toString(): string
     {
         return $this->getId();
+    }
+
+    public function getIndent(): ?Indent
+    {
+        return $this->indent;
+    }
+
+    public function setIndent(Indent $indent): self
+    {
+        $this->indent = $indent;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $indent->getCart()) {
+            $indent->setCart($this);
+        }
+
+        return $this;
     }
 }

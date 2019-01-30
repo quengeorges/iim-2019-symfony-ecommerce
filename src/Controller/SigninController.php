@@ -30,7 +30,7 @@ class SigninController extends AbstractController
         $form = $this->createForm(SigninType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted()) {
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,

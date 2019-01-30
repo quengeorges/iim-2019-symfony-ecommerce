@@ -3,9 +3,145 @@
 {% block title %}Hello CheckoutController!{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-        <button class="btn">{{ button_label|default('Pay') }}</button>
-    {{ form_end(form) }}
+    <section class="newproduct bgwhite p-t-45 p-b-105">
+        <div class="container">
+            <div class="sec-title p-b-60">
+                <h3 class="m-text5 t-center">
+                    Products in cart
+                </h3>
+            </div>
+
+            <!-- Slide2 -->
+            <div class="wrap-slick2">
+                <div class="slick2">
+
+                    {% for product in products %}
+                        {% include 'index/partials/product.html.twig' %}
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    {% if form_errors(form) %}
+        <div class="alert alert-danger">{{ form_errors(form) }}</div>
+    {% endif %}
+    <form method="post">
+        {{ form_start(form) }}
+        <section class="bgwhite p-t-66 p-b-60">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 p-b-30">
+                        <form class="leave-comment">
+                            <h4 class="m-text26 p-b-36 p-t-15">
+                                Payment
+                            </h4>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.deliveryAddress,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Delivery Address'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.deliveryCity,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Delivery City'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.deliveryCountry,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Delivery Country'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.deliveryZipcode,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Delivery Zipcode'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.billingAddress,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Billing Adress'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.billingCity,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Billing City'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.billingCountry,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Billing Country'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.billingZipcode,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Billing ZipCode'
+                                    }
+                                    }) }}
+                            </div>
+
+                            <div class="bo4 of-hidden size15 m-b-20">
+                                {{ form_widget(form.card,
+                                    { 'label': false,
+                                        'attr': {
+                                        'class': 'sizefull s-text7 p-l-22 p-r-22',
+                                        'placeholder': 'Payement Card'
+                                    }
+                                    }) }}
+                            </div>
+
+
+                            <div class="w-size25">
+                                <!-- Button -->
+                                <button class="btn">{{ button_label|default('Pay') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{ form_end(form) }}
+    </form>
+
 
 {% endblock %}
