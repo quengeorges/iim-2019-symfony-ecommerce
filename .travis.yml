@@ -18,9 +18,9 @@ jobs:
       script:
         - composer install
         - cp .env.test .env
-        - php bin/console doctrine:database:create --env=test
-        - php bin/console doctrine:schema:create --env=test
-        - php bin/console doctrine:fixtures:load -n --env=test
+        - php bin/console doctrine:database:create --force
+        - php bin/console doctrine:schema:create --force
+        - php bin/console doctrine:fixtures:load -n --force
     - stage: test
       script: php bin/phpunit
     - stage: deploy
