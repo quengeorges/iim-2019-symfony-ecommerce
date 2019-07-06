@@ -32,8 +32,8 @@ before-install:
   - composer self-update
 
 install:
-  - composer install --no-dev
   - cp .env.test .env
+  - composer install --no-dev
   - php bin/console doctrine:database:create --env=test
   - php bin/console doctrine:schema:create --env=test
   - php bin/console doctrine:fixtures:load -n --env=test
