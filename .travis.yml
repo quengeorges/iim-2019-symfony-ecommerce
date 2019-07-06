@@ -1,6 +1,14 @@
 language: php
+# Versions of PHP you want your project run with.
 php:
   - 7.2
+  - hhvm
+
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+
+sudo: false
 
 services:
   - mysql
@@ -9,28 +17,29 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.2
+    - php: hhvm
+  allow_failures:
+    - php: hhvm
+
 env:
   - SYMFONY_VERSION="4.2.*" DB=mysql
 
-jobs:
-  include:
-    - stage: build
-      script:
-        - composer install
-        - cp .env.test .env
-        - php bin/console doctrine:database:create --force
-        - php bin/console doctrine:schema:create --force
-        - php bin/console doctrine:fixtures:load -n --force
-    - stage: test
-      script: php bin/phpunit
-    - stage: deploy
-      deploy:
-        provider: heroku
-        api_key: $HEROKU_KEY
-        app: $HEROKU_APP
-    - stage: notify
-      notifications:
-        email: quenting92@gmail.com
+before-install:
+  - composer self-update
 
-on:
-  branch: master
+install:
+  - composer install
+  - cp app/config/parameters.yml.dist app/config/parameters.yml
+  - php bin/console doctrine:database:create --env=test
+  - php bin/console doctrine:schema:create --env=test
+  - php bin/console doctrine:fixtures:load -n --env=test
+
+script:
+  - phpunit
+
+notifications:
+  email: [quenting92@gmail.com]
