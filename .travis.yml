@@ -33,7 +33,7 @@ before-install:
 
 install:
   - cp .env.test .env
-  - composer install --no-dev
+  - composer install
   - php bin/console doctrine:database:create --env=test
   - php bin/console doctrine:schema:create --env=test
   - php bin/console doctrine:fixtures:load -n --env=test
