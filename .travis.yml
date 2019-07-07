@@ -1,14 +1,10 @@
-# Project language
 language: php
 
-# Allows use container-based infrastructure
-sudo: false
+sudo: true
 
-# Start mysql service
 services:
   - mysql
 
-# Cache composer packages so "composer install" is faster
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -19,23 +15,34 @@ env:
 
 # Update composer
 before-install:
-  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-  - sudo mysql_upgrade
-  - sudo service mysql restart
+  - cp .env.test .env
   - composer self-update
+  - composer install
+
 
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
-  - cp .env.test .env
-  - composer install
-  - php bin/console doctrine:database:create --env=test
-  - php bin/console doctrine:schema:create --env=test
-  - php bin/console doctrine:fixtures:load -n --env=test
 
+
+
+jobs:
+  include:
+    - stage: test
+      script: phpunit
+    - stage: build
+      script:
+        - php bin/console doctrine:database:create --env=test
+        - php bin/console doctrine:schema:create --env=test
+        - php bin/console doctrine:fixtures:load -n --env=test
+    - stage: deploy
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_KEY
+        app: $HEROKU_APP
+on:
+  branch: master
 # Run script
-script:
-  - phpunit
 
 # After a build, send email notification with the build results
 notifications:
