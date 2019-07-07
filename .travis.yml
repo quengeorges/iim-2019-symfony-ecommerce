@@ -29,7 +29,7 @@ install:
 jobs:
   include:
     - stage: test
-      script: phpunit
+      script: php bin/phpunit
     - stage: build
       script:
         - php bin/console doctrine:database:create --env=test
