@@ -13,15 +13,11 @@ cache:
 env:
   - SYMFONY_VERSION="4.2.*" DB=mysql
 
-# Update composer
-before-install:
-  - cp .env.test .env
-  - composer self-update
-
-
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
+  - composer self-update
+  - cp .env.test .env
   - composer install
 
 jobs:
