@@ -26,9 +26,9 @@ jobs:
       script: php bin/phpunit
     - stage: build
       script:
-        - php bin/console doctrine:database:create --env=test
-        - php bin/console doctrine:schema:create --env=test
-        - php bin/console doctrine:fixtures:load -n --env=test
+        - php bin/console doctrine:database:create
+        - php bin/console doctrine:schema:create --force
+        - php bin/console doctrine:fixtures:load --force
     - stage: deploy
       deploy:
         provider: heroku
