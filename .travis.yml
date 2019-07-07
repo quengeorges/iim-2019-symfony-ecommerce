@@ -17,14 +17,12 @@ env:
 before-install:
   - cp .env.test .env
   - composer self-update
-  - composer install
 
 
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
-
-
+  - composer install
 
 jobs:
   include:
