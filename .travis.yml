@@ -26,9 +26,10 @@ jobs:
       script: php bin/phpunit
     - stage: build
       script:
+        - php bin/console cache:clear
         - php bin/console doctrine:database:create
         - php bin/console doctrine:schema:update --force
-        - php bin/console doctrine:fixtures:load --force
+        - php bin/console doctrine:fixtures:load -y
     - stage: deploy
       deploy:
         provider: heroku
