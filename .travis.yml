@@ -24,12 +24,6 @@ jobs:
   include:
     - stage: test
       script: php bin/phpunit
-    - stage: build
-      script:
-        - php bin/console cache:clear
-        - php bin/console doctrine:database:create
-        - php bin/console doctrine:schema:create
-        - php bin/console doctrine:fixtures:load -n
     - stage: deploy
       deploy:
         provider: heroku
@@ -41,4 +35,4 @@ on:
 
 # After a build, send email notification with the build results
 notifications:
-  email: fake@gmail.com
+  email: [quenting92@gmail.com]
