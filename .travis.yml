@@ -9,12 +9,9 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
-# Define an environment variable
 env:
   - SYMFONY_VERSION="4.2.*" DB=mysql
 
-# Install composer dependencies,
-# Create database, schema and fixtures
 install:
   - composer self-update
   - cp .env.test .env
@@ -24,6 +21,17 @@ jobs:
   include:
     - stage: test
       script: php bin/phpunit
+    #- stage: build
+    #  script:
+    #   - php bin/console cache:clear
+    #   - php bin/console doctrine:database:create
+    #   - php bin/console doctrine:schema:create
+    #   - php bin/console doctrine:fixtures:load -n
+    - stage: deploy-preprod
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_KEY
+        app: $HEROKU_PP_APP
     - stage: deploy
       deploy:
         provider: heroku
@@ -31,8 +39,6 @@ jobs:
         app: $HEROKU_APP
 on:
   branch: master
-# Run script
 
-# After a build, send email notification with the build results
 notifications:
   email: [quenting92@gmail.com]
